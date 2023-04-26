@@ -1,8 +1,6 @@
 import {useState} from "react";
-import {Form} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import {useRouter} from "next/router";
-import Link from "next/link";
+
 
 const Login = () => {
     const [email, setEmail] = useState("");

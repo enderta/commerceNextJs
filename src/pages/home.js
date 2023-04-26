@@ -32,8 +32,8 @@ export default function Home() {
     }, [search]);
     console.log(posts)
     return (
-        <>
-            <div>
+        <div>
+            <div style={{background:"black"}}>
                 <Navbar search={setSearch}/>
                 <div>
                     <FontAwesomeIcon icon={faSearch} color={'goldenRod'} style={{margin: "5px"}}/>
@@ -47,7 +47,7 @@ export default function Home() {
                         style={{border: "1px solid black", borderRadius: "5px", padding: "5px", margin: "5px"}}
                     />
                 </div>
-                <div className="container">
+                <div className="container" >
                     <div className="row">
                         <div className="col-md-12">
                             <h1 style={{color: "goldenrod", textAlign: "center"}}>Posts</h1>
@@ -57,13 +57,13 @@ export default function Home() {
                                         // eslint-disable-next-line react/jsx-key
                                         <div className="col-md-4">
                                             <div className="card"
-                                                 style={{height: "30rem", width: "18rem", margin: "5px"}}>
+                                                 style={{height: "30rem", width: "18rem", margin: "5px",border:"1px solid goldenrod", background:"black"}}>
                                                 <img className={"card-img-top"} src={post.image_url}
                                                      alt="Card image cap"/>
                                                 <div className="card-body">
                                                     <h6 className="card-title mb-2 text-muted">Title: {post.title}</h6>
                                                     <h6 className="card-subtitle mb-2 text-muted">Author: {post.author}</h6>
-                                                    <p>
+                                                    <p style={{color:"white"}}>
                                                         {post.content.length > 100 ? post.content.substring(0, 100) + "..." : post.content}
                                                     </p>
                                                     <h6 className="card-subtitle mb-2 text-muted">
@@ -96,6 +96,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

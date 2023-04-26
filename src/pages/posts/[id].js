@@ -33,9 +33,9 @@ export default function Post() {
 
     return (
         <>
-            <div>
+            <div style={{background:"black"}}>
                 <Navbar/>
-                <div className="container">
+                <div className="container" style={{color:"white"}} >
                     <div className="row">
                         <div className="col-md-12">
                             <h1 style={{color: "goldenrod", textAlign: "center"}}>{post.title}</h1>
