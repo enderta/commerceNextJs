@@ -3,7 +3,7 @@ import React  from "react";
 import {useEffect, useState} from "react";
 import {faBookOpenReader, faPaperPlane, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Navbar from "../components/Navbar";
+import Navbar from "/components/Navbar";
 import {router} from "next/client";
 import Button from "react-bootstrap/Button";
 
@@ -97,8 +97,10 @@ export default function handler(req, res) {
                                     </div>
                                 </div>
                                 <br/>
-                                <Button type="submit" variant={"outline-warning"}>
-                                    <FontAwesomeIcon  icon={faPaperPlane}/>
+                                <Button type="submit" variant={"outline-info"}>
+                                               <span>
+                                                   &#9992;
+                                               </span>
                                 </Button>
                             </form>
                             {loading ?  <h5 style={{color: "goldenrod", textAlign: "center"}}>loading...</h5> : null}

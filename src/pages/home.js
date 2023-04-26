@@ -1,13 +1,10 @@
-import Head from 'next/head';
-import Layout, {siteTitle} from '../components/Layout';
-import utilStyles from '../styles/utils.module.css';
 import Link from "next/link";
-import React  from "react";
+import React from "react";
 import {useEffect, useState} from "react";
 import {faBookOpenReader, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Navbar from "../components/Navbar";
-import Single from "../components/Single";
+import Navbar from "/components/Navbar";
+
 
 export default function Home() {
     const [posts, setPosts] = React.useState([]);
@@ -43,9 +40,11 @@ export default function Home() {
                     <input
                         type="text"
                         placeholder="Search"
+
                         onChange={(e) => {
                             setSearch(e.target.value);
                         }}
+                        style={{border: "1px solid black", borderRadius: "5px", padding: "5px", margin: "5px"}}
                     />
                 </div>
                 <div className="container">
@@ -57,31 +56,37 @@ export default function Home() {
                                     {posts.map((post) => (
                                         // eslint-disable-next-line react/jsx-key
                                         <div className="col-md-4">
-                                            <div className="card" style={{height: "30rem", width: "18rem", margin: "5px"}}>
-                                                <img className={"card-img-top"} src={post.image_url} alt="Card image cap"/>
+                                            <div className="card"
+                                                 style={{height: "30rem", width: "18rem", margin: "5px"}}>
+                                                <img className={"card-img-top"} src={post.image_url}
+                                                     alt="Card image cap"/>
                                                 <div className="card-body">
                                                     <h6 className="card-title mb-2 text-muted">Title: {post.title}</h6>
                                                     <h6 className="card-subtitle mb-2 text-muted">Author: {post.author}</h6>
                                                     <p>
                                                         {post.content.length > 100 ? post.content.substring(0, 100) + "..." : post.content}
                                                     </p>
-                                                </div>
-                                                <span style={{margin: "5px"}}>
+                                                    <h6 className="card-subtitle mb-2 text-muted">
+                                                        Posted: {new Date(post.created_at).toLocaleDateString()}
+                                                    </h6>
+                                                    {post.updated_at ? (
+                                                        <h6 className="card-subtitle mb-2 text-muted">
+                                                            Updated: {new Date(post.updated_at).toLocaleDateString()}
+                                                        </h6>
+                                                    ) : (
+                                                        <></>)
+                                                    }
+                                                    <span>
                                                 <Link href={`posts/${post.id}`}>
-                                                     <FontAwesomeIcon icon={faBookOpenReader}/>
+                                                    <span style={{fontSize: "2rem"}}>
+                                                        &#128214;
+                                                    </span>
                                                 </Link>
                                             </span>
-                                                <br/>
-                                                <h6 className="card-subtitle mb-2 text-muted">
-                                                    Posted: {new Date(post.created_at).toLocaleDateString()}
-                                                </h6>
-                                                {post.updated_at ? (
-                                                    <h6 className="card-subtitle mb-2 text-muted">
-                                                        Updated: {new Date(post.updated_at).toLocaleDateString()}
-                                                    </h6>
-                                                ) : (
-                                                    <></>)
-                                                }
+
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     ))}

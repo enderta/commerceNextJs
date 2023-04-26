@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
-import Navbar from "../../components/Navbar";
+import Navbar from "/components/Navbar";
 import Link from "next/link";
 
 export default function Post() {
@@ -46,14 +46,17 @@ export default function Post() {
                                             <div className="d-flex justify-content-end">
                                                 <Button variant={"outline-danger"}>
                                                     <Link href={`/posts/delete/${id}`}>
-
-                                                        <FontAwesomeIcon icon={faTrashAlt}/>
+                                                        <span>
+                                                            &#128465;
+                                                        </span>
                                                     </Link>
 
                                                 </Button>
                                                 <Button variant={"outline-info"}>
                                                     <Link href={`/posts/edit/${id}`}>
-                                                        <FontAwesomeIcon icon={faEdit}/>
+                                                      <span>
+                                                          &#9999;
+                                                        </span>
                                                     </Link>
                                                 </Button>
                                             </div>

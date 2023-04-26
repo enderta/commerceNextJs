@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons";
-import Navbar from "../../../components/Navbar";
+import Navbar from 'components/Navbar'
 
 export default function edit() {
     const [post, setPost] = useState([]);
@@ -137,12 +137,13 @@ export default function edit() {
                                                                id="image_url"
                                                                onChange={handleImage_url}/>
                                                     </div>
-
                                                 </div>
                                             </div>
                                             <br/>
                                             <Button type="submit" variant={"outline-warning"}>
-                                                <FontAwesomeIcon icon={faPaperPlane}/>
+                                               <span>
+                                                   &#9992;
+                                               </span>
                                             </Button>
                                         </form>
                                     </div>

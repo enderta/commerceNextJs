@@ -7,7 +7,7 @@ import Link from "next/link";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
 
     function handleToggle() {
         setDarkMode(!darkMode);
@@ -60,6 +60,7 @@ const Login = () => {
     return (
         <div>
             <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen`}>
+                <br/>
                 <div className="flex items-center justify-between">
                     <button
                         type="button"
@@ -102,20 +103,14 @@ const Login = () => {
                                            className={`${darkMode ? 'text-white' : 'text-gray-900'} block text-sm font-medium leading-6`}>
                                         Password
                                     </label>
-                                    <div className="text-sm">
-                                        <a href="#"
-                                           className={`${darkMode ? 'text-indigo-400 hover:text-indigo-500' : 'text-indigo-600 hover:text-indigo-500'} font-semibold`}>
-                                            Forgot password?
-                                        </a>
-                                    </div>
                                 </div>
                                 <div className="mt-2">
                                     <input
                                         id="password"
                                         name="password"
-                                        type="password"
                                         value={password}
                                         onChange={handlePassword}
+                                        type="password"
                                         autoComplete="current-password"
                                         required
                                         className={`${darkMode ? 'bg-gray-800' : 'bg-gray-100'} block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
