@@ -1,0 +1,6 @@
+
+http://localhost:3000/api/rental
+
+### Get all rentals
+http://localhost:3000/api/rental
+content-type: application/json
