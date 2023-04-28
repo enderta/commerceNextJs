@@ -2,5 +2,6 @@
 http://localhost:3000/api/rental
 
 ### Get all rentals
-http://localhost:3000/api/rental
-content-type: application/json
+http://localhost:3000/api/rental?is_rental=true&search=new
+
+
