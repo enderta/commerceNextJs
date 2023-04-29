@@ -31,7 +31,7 @@ const [properties, setProperties] = useState([]);
                             <div className="card-body">
                                 <h5 className="card-title">Search</h5>
                                 <div className="form-group">
-                                    <label htmlFor="search">Search</label>
+                                    <label htmlFor="search">Zip Codes/Cities/States</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -41,16 +41,16 @@ const [properties, setProperties] = useState([]);
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="is_rental">Rental</label>
+                                    <label htmlFor="is_rental">Homes</label>
                                     <select
                                         className="form-control"
                                         id="is_rental"
                                         value={is_rental}
                                         onChange={(e) => setIs_rental(e.target.value)}
                                     >
-                                        <option value="">--</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
+                                        <option value="">All</option>
+                                        <option value="true">Rental</option>
+                                        <option value="false">For Sale</option>
                                     </select>
                                 </div>
                             </div>
