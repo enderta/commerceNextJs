@@ -18,12 +18,6 @@ const [properties, setProperties] = useState([]);
     console.log(properties)
     return (
         <div>
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container">
-                    <h1 className="display-4">Welcome to Rental Home</h1>
-                    <p className="lead">Find your next home here</p>
-                </div>
-            </div>
             <div className="container">
                 <div className="row">
                     <div className="col-3">
