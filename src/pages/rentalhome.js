@@ -1,6 +1,7 @@
 import './RentalSearch'
 import React from "react";
 import RentalSearch from "./RentalSearch";
+import Carosel from "@/pages/Carosel";
 export default function RentalHome(props) {
 
     return (
@@ -12,6 +13,9 @@ export default function RentalHome(props) {
             </div>
             <div>
                 <RentalSearch/>
+            </div>
+            <div>
+                <Carosel/>
             </div>
 
         </div>
