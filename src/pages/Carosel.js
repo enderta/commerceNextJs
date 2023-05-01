@@ -5,51 +5,67 @@ export default function Carosel(props) {
     const [images, setImages] = useState([]);
     const [randomImageSrc, setRandomImageSrc] = useState([]);
     const [propertyIds, setPropertyIds] = useState([]);
+    const [image1, setImage1] = useState("");
+    const [image2, setImage2] = useState("");
+    const [image3, setImage3] = useState("");
 
     useEffect(() => {
         // Fetch all images and property ids
         fetch(`/api/rentalImages`)
             .then((res) => res.json())
             .then((data) => {
-                setImages(data.data.rows);
-                setPropertyIds([...new Set(data.data.rows.map((item) => item.property_id))]);
+                setImages(data.image_url);
+              const randomNum = Math.floor(Math.random() * data.image_url.length);
+              setImage1(data.image_url[randomNum]);
+                setImage2(data.image_url[randomNum+1]);
+                setImage3(data.image_url[randomNum+2]);
+
+
             });
     }, []);
 
-    useEffect(() => {
-        if (propertyIds.length > 0) {
-            const randomPropertyIds = [];
-            while (randomPropertyIds.length < 3) {
-                const randomIndex = Math.floor(Math.random() * propertyIds.length);
-                const randomPropertyId = propertyIds[randomIndex];
-                if (!randomPropertyIds.includes(randomPropertyId)) {
-                    randomPropertyIds.push(randomPropertyId);
-                }
-            }
-            const randomImageUrls = images
-                .filter((image) => randomPropertyIds.includes(image.property_id))
-                .map((image) => image.image_url);
-            setRandomImageSrc(randomImageUrls);
-        }
-    }, [propertyIds, images]);
 
     return (
         <>
             <br />
-            <Carousel nextLabel="Next" prevLabel="Prev">
-                {randomImageSrc.map((image, index) => (
-                    <Carousel.Item key={index}>
-                        <img
-                            className="d-block w-100"
-                            src={image}
-                            alt={`Slide ${index + 1}`}
-                        />
-                        <Carousel.Caption>
-                            <h3>{`Slide ${index + 1}`}</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                ))}
+            <Carousel>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={image1}
+                        alt={image1}
+                    />
+                    <Carousel.Caption>
+                        <h3>Find your next home here</h3>
+                        <p>Search for your next home here</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={image2}
+                       alt={image2}
+                    />
+
+                    <Carousel.Caption>
+                        <h3>Find your next home here</h3>
+                        <p>Search for your next home here</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={image3}
+                        alt={image3}
+                    />
+
+                    <Carousel.Caption>
+                        <h3>Find your next home here</h3>
+                        <p>Search for your next home here</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
             </Carousel>
+
         </>
     );
 }
