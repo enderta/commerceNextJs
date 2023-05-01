@@ -1,21 +1,9 @@
 import Link from "next/link";
 import {useState,useEffect} from "react";
 
-export default function search(){
-    const [search, setSearch] = useState("");
-    const [is_rental, setIs_rental] = useState("");
-const [properties, setProperties] = useState([]);
+export default function search(props){
 
-   useEffect(() => {
-       fetch(`/api/rental?search=${search}&is_rental=${is_rental}`)
-         .then((res) => res.json())
-            .then((data) => {
-                setProperties(data.data.rows);
 
-            }
-            );
-    }, [search, is_rental]);
-    console.log(properties)
     return (
         <div>
             <div className="container">
@@ -30,8 +18,8 @@ const [properties, setProperties] = useState([]);
                                         type="text"
                                         className="form-control"
                                         id="search"
-                                        value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
+                                        value={props.search}
+                                        onChange={(e) => props.setSearch(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -39,8 +27,8 @@ const [properties, setProperties] = useState([]);
                                     <select
                                         className="form-control"
                                         id="is_rental"
-                                        value={is_rental}
-                                        onChange={(e) => setIs_rental(e.target.value)}
+                                        value={props.is_rental}
+                                        onChange={(e) => props.setIs_rental(e.target.value)}
                                     >
                                         <option value="">All</option>
                                         <option value="true">Rental</option>
@@ -52,7 +40,7 @@ const [properties, setProperties] = useState([]);
                     </div>
                     <div className="col-9">
                         <div className="row">
-                            {properties.map((property) => (
+                            {props.properties.map((property) => (
                                 <div className="col-4" key={property.id}>
                                     <div className="card">
                                         <img

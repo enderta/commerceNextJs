@@ -10,7 +10,8 @@ export default function Carosel(props) {
                <Carousel.Item>
                    <img
                        className="d-block w-100"
-                       src="holder.js/800x400?text=First slide&bg=373940"
+                       src={"https://www.homeswapper.me/wp-content/uploads/2019/02/home-page-full.svg"}
+                       style={{height: "400px"}}
                        alt="First slide"
                    />
                    <Carousel.Caption>
@@ -34,7 +35,8 @@ export default function Carosel(props) {
                <Carousel.Item>
                    <img
                        className="d-block w-100"
-                       src="holder.js/800x400?text=Third slide&bg=20232a"
+                       src={"https://www.homeswapper.me/wp-content/uploads/2019/02/home-page-full.svg"}
+                       style={{height: "400px"}}
                        alt="Third slide"
                    />
 
