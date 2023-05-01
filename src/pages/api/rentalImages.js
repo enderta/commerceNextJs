@@ -14,9 +14,11 @@ export default async function rentalImages(req, res) {
                 res.status(200).json({
                         status: "success",
                         message: `${rows.length} images found for property_id: ${property_id}`,
+                     //put url in an array
                         data: {
                             rows
-                        }
+                        },
+                        image_url: rows.map((item) => item.image_url)
                     }
                 );
             } catch (err) {
@@ -34,7 +36,8 @@ export default async function rentalImages(req, res) {
                         message: `${rows.length} images found`,
                         data: {
                             rows
-                        }
+                        },
+                        image_url: rows.map((item) => item.image_url)
                     }
                 );
             }
