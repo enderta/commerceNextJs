@@ -24,7 +24,7 @@ export default function RentalHome(props) {
                 <p className="lead">Find your next home here</p>
             </div>
             <div>
-                <Carosel/>
+                <Carosel properties={properties} />
             </div>
             <br/>
             <div>
