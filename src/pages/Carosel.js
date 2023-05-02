@@ -37,7 +37,7 @@ export default function Carosel(props) {
            <div className={"container"}>
                <Carousel>
                    <Carousel.Item>
-                       //image should be 500x500
+
                        <img
                            className="d-block w-100"
                            src={image1}
