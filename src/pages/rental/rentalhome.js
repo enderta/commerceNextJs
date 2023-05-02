@@ -1,6 +1,6 @@
-import './RentalSearch'
+import '../RentalSearch'
 import React, {useEffect, useState} from "react";
-import RentalSearch from "./RentalSearch";
+import RentalSearch from "../RentalSearch";
 import Carosel from "@/pages/Carosel";
 
 export default function RentalHome(props) {

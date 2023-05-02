@@ -52,7 +52,7 @@ export default function search(props){
                                             <h5 className="card-title">{property.address_line_1}</h5>
                                             <p className="card-text">{property.city}</p>
                                             <p className="card-text">{property.price}</p>
-                                            <Link href={`/property/${property.id}`}>
+                                            <Link href={`/rental/${property.id}`}>
                                                <button className="btn btn-primary">View</button>
                                             </Link>
                                         </div>
