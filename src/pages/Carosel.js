@@ -16,55 +16,56 @@ export default function Carosel(props) {
             .then((data) => {
                 setImages(data.image_url);
               const randomNum = Math.floor(Math.random() * data.image_url.length);
-              setImage1(data.image_url[randomNum]);
-                setImage2(data.image_url[randomNum+1]);
-                setImage3(data.image_url[randomNum+2]);
-
-
+              let num2 = Math.floor(Math.random() * data.image_url.length);
+              while (num2 === randomNum) {
+                num2 = Math.floor(Math.random() * data.image_url.length);
+              }
+                let num3 = Math.floor(Math.random() * data.image_url.length);
+              while (num3 === randomNum || num3 === num2) {
+                num3 = Math.floor(Math.random() * data.image_url.length);
+              }
+                setImage1(data.image_url[randomNum]);
+                setImage2(data.image_url[num2]);
+                setImage3(data.image_url[num3]);
             });
     }, []);
-
+    console.log(image1, image2, image3);
 
     return (
         <>
             <br />
-            <Carousel>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={image1}
-                        alt={image1}
-                    />
-                    <Carousel.Caption>
-                        <h3>Find your next home here</h3>
-                        <p>Search for your next home here</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={image2}
-                       alt={image2}
-                    />
+           <div className={"container"}>
+               <Carousel>
+                   <Carousel.Item>
+                       //image should be 500x500
+                       <img
+                           className="d-block w-100"
+                           src={image1}
+                           alt="First slide"
 
-                    <Carousel.Caption>
-                        <h3>Find your next home here</h3>
-                        <p>Search for your next home here</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={image3}
-                        alt={image3}
-                    />
+                       />
 
-                    <Carousel.Caption>
-                        <h3>Find your next home here</h3>
-                        <p>Search for your next home here</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+                   </Carousel.Item>
+                   <Carousel.Item>
+                       <img
+                           className="d-block w-100"
+                           src={image2}
+                           alt="Second slide"
+
+                       />
+                   </Carousel.Item>
+
+                   <Carousel.Item>
+                       <img
+                           className="d-block w-100"
+                           src={image3}
+                           alt="Third slide"
+
+                       />
+                   </Carousel.Item>
+
+               </Carousel>
+           </div>
 
         </>
     );

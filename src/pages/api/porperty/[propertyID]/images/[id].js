@@ -61,15 +61,15 @@ export default async function handler(req, res) {
         }
     }
 
-    else if(method==="DELETE"){
+    else if(method==="POST"){
         try {
             const {rows} = await client.query(
-                'delete from property_images where property_id=$1 and id=$2',
-                [propertyID, id]
+                'insert into property_images (property_id, image_url) values ($1, $2) returning *',
+                [propertyID, req.body.image_url]
             );
             res.status(200).json({
                 status: "success",
-                message: `Image ${id} deleted for property ${propertyID}`,
+                message: `Image ${id} created for property ${propertyID}`,
                 data: rows[0],
             });
         } catch (error) {

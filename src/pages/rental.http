@@ -15,10 +15,10 @@ GET http://localhost:3000/api/1
 
 
 ###
-PUT http://localhost:3000/api/porperty/2/images/3
+PUT http://localhost:3000/api/porperty/2/images/10
 content-type: application/json
 
 {
-  "property_id": 3,
-  "image_url": "https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg"
+  "property_id": 2,
+  "image_url": "https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/advisor/wp-content/uploads/2021/08/download-11.jpg"
 }
