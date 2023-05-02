@@ -2,7 +2,7 @@ import './RentalSearch'
 import React, {useEffect, useState} from "react";
 import RentalSearch from "./RentalSearch";
 import Carosel from "@/pages/Carosel";
-import {Carousel} from "react-bootstrap";
+
 export default function RentalHome(props) {
     const [search, setSearch] = useState("");
     const [is_rental, setIs_rental] = useState("");
@@ -34,7 +34,7 @@ export default function RentalHome(props) {
             <div>
 
             </div>
-
+            <br/>
         </div>
     )
 }
