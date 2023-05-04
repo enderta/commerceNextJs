@@ -28,7 +28,9 @@ export default function Home() {
 
 
             <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen`}>
-            <br/>
+                <div>
+                    <h1 className="text-center text-4xl font-bold">Property Details</h1>
+                </div>
             <div className="flex items-center justify-between">
                 <button
                     type="button"
@@ -37,6 +39,23 @@ export default function Home() {
                     {darkMode ? <span>&#x2600; </span> : <span>&#127769;</span>}
                 </button>
             </div>
+                <Container className="d-flex justify-content-center">
+                    {property.id && (
+                        <Row>
+                            <Col md={8}>
+                                <h2>{property.title}</h2>
+                                <p>{property.description}</p>
+                                <p>
+                                    Price: {property.price} {property.currency}
+                                </p>
+                                <p>{property.is_rental ? "For rent" : "For sale"}</p>
+                            </Col>
+                            <Col md={4}>
+                                <Image src={property.image_url} alt={property.title} thumbnail />
+                            </Col>
+                        </Row>
+                    )}
+                </Container>
             </div>
 
 
