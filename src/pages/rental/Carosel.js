@@ -32,7 +32,7 @@ export default function Carosel(props) {
     console.log(image1, image2, image3);
 
     return (
-        <>
+        <div className={`${props.dark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen`}>
             <br />
            <div className={"container"}>
                <Carousel>
@@ -67,6 +67,6 @@ export default function Carosel(props) {
                </Carousel>
            </div>
 
-        </>
+        </div>
     );
 }

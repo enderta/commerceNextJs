@@ -1,7 +1,7 @@
 import Link from "next/link";
-import {useState,useEffect} from "react";
+import {useState, useEffect} from "react";
 
-export default function search(props){
+export default function search(props) {
 
 
     return (
@@ -53,7 +53,7 @@ export default function search(props){
                                             <p className="card-text">{property.city}</p>
                                             <p className="card-text">{property.price}</p>
                                             <Link href={`/rental/${property.id}`}>
-                                               <button className="btn btn-primary">View</button>
+                                                <button className="btn btn-primary">View</button>
                                             </Link>
                                         </div>
                                     </div>
@@ -62,9 +62,7 @@ export default function search(props){
                         </div>
                     </div>
                 </div>
-                </div>
-                </div>
+            </div>
+        </div>
     );
-
-
 }
