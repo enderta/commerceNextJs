@@ -2,6 +2,8 @@ import React from "react";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {Container, Row, Col, Image} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export default function Home() {
@@ -10,10 +12,15 @@ export default function Home() {
     const [property, setProperty] = useState({});
     const [darkMode, setDarkMode] = useState(false);
 
-
-    function handleToggle() {
-        setDarkMode(!darkMode);
+useEffect(() => {
+    if (localStorage.getItem("dark") === "true") {
+        setDarkMode(true);
+    } else {
+        setDarkMode(false);
     }
+}, [localStorage.getItem("dark")]);
+
+
 
     useEffect(() => {
         const getProperty = async () => {
@@ -31,14 +38,6 @@ export default function Home() {
                 <div>
                     <h1 className="text-center text-4xl font-bold">Property Details</h1>
                 </div>
-            <div className="flex items-center justify-between">
-                <button
-                    type="button"
-                    onClick={handleToggle}
-                >
-                    {darkMode ? <span>&#x2600; </span> : <span>&#127769;</span>}
-                </button>
-            </div>
                 <Container className="d-flex justify-content-center">
                     {property.id && (
                         <Row>
@@ -55,7 +54,15 @@ export default function Home() {
                             </Col>
                         </Row>
                     )}
+
                 </Container>
+                <div>
+
+                    <Button variant="outline" href="/rental/rentalhome">
+                        <FontAwesomeIcon icon="arrow-left" /> 🏠
+                    </Button>
+
+                </div>
             </div>
 
 

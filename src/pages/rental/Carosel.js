@@ -15,15 +15,15 @@ export default function Carosel(props) {
             .then((res) => res.json())
             .then((data) => {
                 setImages(data.image_url);
-              const randomNum = Math.floor(Math.random() * data.image_url.length);
-              let num2 = Math.floor(Math.random() * data.image_url.length);
-              while (num2 === randomNum) {
-                num2 = Math.floor(Math.random() * data.image_url.length);
-              }
+                const randomNum = Math.floor(Math.random() * data.image_url.length);
+                let num2 = Math.floor(Math.random() * data.image_url.length);
+                while (num2 === randomNum) {
+                    num2 = Math.floor(Math.random() * data.image_url.length);
+                }
                 let num3 = Math.floor(Math.random() * data.image_url.length);
-              while (num3 === randomNum || num3 === num2) {
-                num3 = Math.floor(Math.random() * data.image_url.length);
-              }
+                while (num3 === randomNum || num3 === num2) {
+                    num3 = Math.floor(Math.random() * data.image_url.length);
+                }
                 setImage1(data.image_url[randomNum]);
                 setImage2(data.image_url[num2]);
                 setImage3(data.image_url[num3]);
@@ -32,41 +32,42 @@ export default function Carosel(props) {
     console.log(image1, image2, image3);
 
     return (
-        <div className={`${props.dark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen`}>
+        <>
             <br />
-           <div className={"container"}>
-               <Carousel>
-                   <Carousel.Item>
+            <div className={"container"}>
+                <Carousel>
+                    <Carousel.Item>
 
-                       <img
-                           className="d-block w-100"
-                           src={image1}
-                           alt="First slide"
+                        <img
+                            className="d-block w-100"
+                            src={image1}
+                            alt="First slide"
 
-                       />
+                        />
 
-                   </Carousel.Item>
-                   <Carousel.Item>
-                       <img
-                           className="d-block w-100"
-                           src={image2}
-                           alt="Second slide"
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={image2}
+                            alt="Second slide"
 
-                       />
-                   </Carousel.Item>
+                        />
+                    </Carousel.Item>
 
-                   <Carousel.Item>
-                       <img
-                           className="d-block w-100"
-                           src={image3}
-                           alt="Third slide"
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={image3}
+                            alt="Third slide"
 
-                       />
-                   </Carousel.Item>
+                        />
+                    </Carousel.Item>
 
-               </Carousel>
-           </div>
+                </Carousel>
+            </div>
+            <br/>
 
-        </div>
+        </>
     );
 }
