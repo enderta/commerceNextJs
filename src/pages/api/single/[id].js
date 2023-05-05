@@ -24,5 +24,8 @@ export default async function handler(req, res) {
                 message: error.message,
             });
         }
+     finally {
+        client.release();
+    }
     }
 }

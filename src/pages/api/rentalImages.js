@@ -40,6 +40,9 @@ export default async function rentalImages(req, res) {
         catch (err) {
             console.error(err);
         }
+     finally {
+        client.release();
+    }
     }
 
 }

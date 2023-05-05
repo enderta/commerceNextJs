@@ -63,7 +63,7 @@ export default async function rental(req, res) {
             //no rental and no search
             else {
                 const {rows} = await client.query(
-                    "SELECT a.*,p.* from properties p join address a on p.address_id=a.id ORDER BY p.price ASC;"
+                    "SELECT DISTINCT a.*,p.*,i.* from address a JOIN properties p ON a.id=p.address_id JOIN property_images i ON p.id=i.property_id ORDER BY p.price ASC;"
                 );
                 res.status(200).json({
                         status: "success",

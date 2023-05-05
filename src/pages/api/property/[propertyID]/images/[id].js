@@ -59,6 +59,9 @@ export default async function handler(req, res) {
                 message: error.message,
             });
         }
+     finally {
+        client.release();
+    }
     }
 
     else if(method==="POST"){
@@ -78,6 +81,9 @@ export default async function handler(req, res) {
                 message: error.message,
             });
         }
+     finally {
+        client.release();
+    }
     }
     else {
         res.status(400).json({

@@ -11,58 +11,37 @@ export default function Carosel(props) {
 
     useEffect(() => {
         // Fetch all images and property ids
-        fetch(`/api/rentalImages`)
+        fetch(`http://localhost:3000/api/rentalImages`)
             .then((res) => res.json())
             .then((data) => {
                 setImages(data.image_url);
-                const randomNum = Math.floor(Math.random() * data.image_url.length);
-                let num2 = Math.floor(Math.random() * data.image_url.length);
-                while (num2 === randomNum) {
-                    num2 = Math.floor(Math.random() * data.image_url.length);
-                }
-                let num3 = Math.floor(Math.random() * data.image_url.length);
-                while (num3 === randomNum || num3 === num2) {
-                    num3 = Math.floor(Math.random() * data.image_url.length);
-                }
-                setImage1(data.image_url[randomNum]);
-                setImage2(data.image_url[num2]);
-                setImage3(data.image_url[num3]);
+
             });
     }, []);
-    console.log(image1, image2, image3);
+
 
     return (
         <>
             <br />
             <div className={"container"}>
                 <Carousel>
-                    <Carousel.Item>
-
-                        <img
-                            className="d-block w-100"
-                            src={image1}
-                            alt="First slide"
-
-                        />
-
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={image2}
-                            alt="Second slide"
-
-                        />
-                    </Carousel.Item>
-
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={image3}
-                            alt="Third slide"
-
-                        />
-                    </Carousel.Item>
+                    {
+                        props.properties.map((image, index) => {
+                            return (
+                                <Carousel.Item key={index}>
+                                    <img
+                                        className="d-block w-100"
+                                        src={image.image_url}
+                                        alt="First slide"
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>First slide label</h3>
+                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            );
+                        })
+                    }
 
                 </Carousel>
             </div>
