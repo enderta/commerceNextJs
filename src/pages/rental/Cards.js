@@ -27,7 +27,7 @@ export default function Cards(props){
                                 <h5 className={`card-title ${dark ? "text-white" : ""}`}>{property.address_line_1}</h5>
                                 <p className={`card-text ${dark ? "text-white" : ""}`}>{property.city}</p>
                                 <p className={`card-text ${dark ? "text-white" : ""}`}>{property.price}</p>
-                                <Link href={`/rental/${property.id}`}>
+                                <Link href={`/rental/${property.property_id}`}>
                                     <button className={`btn ${dark ? "btn-light" : "btn-primary"}`}>View</button>
                                 </Link>
                             </div>

@@ -28,6 +28,7 @@ export default function RentalHome(props) {
             const data = await res.json();
             setProperties(data.data.rows);
             setLoading(false);
+            localStorage.setItem('dark', darkMode);
         };
         fetchData().then(r => console.log(r));
     }, []);

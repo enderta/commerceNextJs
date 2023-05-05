@@ -16,6 +16,7 @@ export default function Carosel(props) {
             .then((data) => {
                 setImages(data.image_url);
 
+
             });
     }, []);
 
