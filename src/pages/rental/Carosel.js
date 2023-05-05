@@ -33,11 +33,12 @@ export default function Carosel(props) {
                                     <img
                                         className="d-block w-100"
                                         src={image.image_url}
-                                        alt="First slide"
+                                        alt={`Slide ${index}`}
                                     />
                                     <Carousel.Caption>
-                                        <h3>First slide label</h3>
-                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                        <h3>
+                                            {image.title}
+                                        </h3>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             );
