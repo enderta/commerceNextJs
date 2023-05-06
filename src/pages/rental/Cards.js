@@ -31,10 +31,10 @@ export default function Cards(props) {
                                     {property.address_line_1}
                                 </h5>
                                 <p className={`card-text ${dark ? "text-white" : ""}`}>
-                                    {property.city}
+                                 City: {property.city}
                                 </p>
                                 <p className={`card-text ${dark ? "text-white" : ""}`}>
-                                    {property.price}
+                                   Price: {property.price} USD
                                 </p>
 
 
