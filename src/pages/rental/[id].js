@@ -12,6 +12,7 @@ export default function Home() {
     const {id} = router.query;
     const [property, setProperty] = useState({});
     const [darkMode, setDarkMode] = useState(false);
+    const [rating, setRating] = useState([]);
 
 useEffect(() => {
     if (localStorage.getItem("dark") === "true") {
@@ -28,10 +29,14 @@ useEffect(() => {
             const response = await fetch(`http://localhost:3000/api/single/${id}`);
             const data = await response.json();
             setProperty(data.data[0]);
+            const stars=(data.data.map((r) => r.rating));
+            const comments=(data.data.map((r) => r.comment));
+            setRating([{stars},{comments}]);
         };
         getProperty().then((r) => console.log(r));
     }, [id]);
-
+    console.log(property)
+    console.log(rating)
     return (
 
 
@@ -50,8 +55,7 @@ useEffect(() => {
                                 </p>
                                 <p>{property.is_rental ? "For rent" : "For sale"}</p>
                                 <div>
-                                    <RatingStars rating={property.rating} />
-                                    <p> Review: {property.comment} </p>
+                                    <RatingStars rating={rating} />
                                 </div>
 
                             </Col>

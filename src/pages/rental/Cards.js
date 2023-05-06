@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import StarRating from "./RatingStars";
 
 export default function Cards(props) {
@@ -36,6 +36,7 @@ export default function Cards(props) {
                                 <p className={`card-text ${dark ? "text-white" : ""}`}>
                                     {property.price}
                                 </p>
+
 
                                 <Link href={`/rental/${property.property_id}`}>
                                     <button
