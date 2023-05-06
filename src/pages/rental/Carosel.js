@@ -3,23 +3,20 @@ import { useEffect, useState } from "react";
 
 export default function Carosel(props) {
     const [images, setImages] = useState([]);
-    const [randomImageSrc, setRandomImageSrc] = useState([]);
-    const [propertyIds, setPropertyIds] = useState([]);
-    const [image1, setImage1] = useState("");
-    const [image2, setImage2] = useState("");
-    const [image3, setImage3] = useState("");
 
+    //async function
     useEffect(() => {
-        // Fetch all images and property ids
-        fetch(`http://localhost:3000/api/rentalImages`)
-            .then((res) => res.json())
-            .then((data) => {
-                setImages(data.image_url);
-
-
-            });
+        async function getImages() {
+            const response = await fetch("http://localhost:3000/api/rentalImages");
+            const data = await response.json();
+            const img=data.image_url;
+            const imsShfl=(img.sort(() => Math.random() - 0.5));
+            setImages(imsShfl.slice(0, 3));
+        }
+        getImages().then(() => {
+            console.log("Images fetched");
+        });
     }, []);
-
 
     return (
         <>
@@ -27,18 +24,15 @@ export default function Carosel(props) {
             <div className={"container"}>
                 <Carousel>
                     {
-                        props.properties.map((image, index) => {
+                        images.map((image, index) => {
                             return (
                                 <Carousel.Item key={index}>
                                     <img
                                         className="d-block w-100"
-                                        src={image.image_url}
+                                        src={image}
                                         alt={`Slide ${index}`}
                                     />
                                     <Carousel.Caption>
-                                        <h3>
-                                            {image.title}
-                                        </h3>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             );
