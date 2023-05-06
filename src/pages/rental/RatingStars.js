@@ -14,12 +14,12 @@ const RatingStars = ({rating}) => {
 
     //yellow stars fa
     for (let i = 0; i < fullStars; i++) {
-        stars.push(<FontAwesomeIcon key={i} icon={faStar} color="yellow"/>);
+        stars.push(<FontAwesomeIcon key={i} icon={faStar} color="green"/>);
     }
 
     //half stars fa
     for (let i = 0; i < halfStars; i++) {
-        stars.push(<FontAwesomeIcon  icon={faStarHalf} color="yellow"/>);
+        stars.push(<FontAwesomeIcon  icon={faStarHalf} color="green"/>);
     }
 
     //empty stars fa
