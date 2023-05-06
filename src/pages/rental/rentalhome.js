@@ -9,7 +9,7 @@ export default function RentalHome(props) {
     const [search, setSearch] = useState("");
     const [is_rental, setIs_rental] = useState("");
     const [properties, setProperties] = useState([]);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
    const [loading, setLoading] = useState(true);
 
     function handleToggle() {
@@ -21,17 +21,18 @@ export default function RentalHome(props) {
 
     }
 
+
    //async api call
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch('http://localhost:3000/api/rental');
+            const res = await fetch(`http://localhost:3000/api/rental?search=${search}&is_rental=${is_rental}`);
             const data = await res.json();
             setProperties(data.data.rows);
             setLoading(false);
             localStorage.setItem('dark', darkMode);
         };
         fetchData().then(r => console.log(r));
-    }, []);
+    }, [search, is_rental]);
 
     console.log(properties)
     return (

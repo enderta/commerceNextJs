@@ -14,7 +14,8 @@ export default async function rental(req, res) {
                 //select a.*,p.*,i.* from properties p join property_images i on p.id=i.property_id join address a on p.address_id=a.id ORDER BY P.price ASC;
                 const {rows} = await client.query(
                     //search by city, zipcode, address,country,state
-                    "SELECT a.*,p.* from properties p join address a on p.address_id=a.id WHERE (a.city ILIKE $1 OR a.zip_code ILIKE $2 OR a.address_line_1 ILIKE $3 OR a.country ILIKE $4 OR a.state ILIKE $5) AND p.is_rental=$6 ORDER BY p.price ASC;"
+                    //SELECT DISTINCT a.*,p.*,i.* from address a JOIN properties p ON a.id=p.address_id JOIN property_images i ON p.id=i.property_id ORDER BY p.price ASC;
+                   "SELECT DISTINCT a.*,p.*,i.* from address a JOIN properties p ON a.id=p.address_id JOIN property_images i ON p.id=i.property_id WHERE (a.city ILIKE $1 OR a.zip_code ILIKE $2 OR a.address_line_1 ILIKE $3 OR a.country ILIKE $4 OR a.state ILIKE $5) AND p.is_rental=$6 ORDER BY p.price ASC;"
                     , [`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, is_rental],
                 );
                 res.status(200).json({
@@ -32,7 +33,8 @@ export default async function rental(req, res) {
             //rental true and no search
             else if (is_rental) {
                 const {rows} = await client.query(
-                    "SELECT a.*,p.* from properties p join address a on p.address_id=a.id WHERE p.is_rental=$1 ORDER BY p.price ASC;"
+                    //SELECT DISTINCT a.*,p.*,i.* from address a JOIN properties p ON a.id=p.address_id JOIN property_images i ON p.id=i.property_id ORDER BY p.price ASC;
+                    "select distinct a.*,p.*,i.* from address a join properties p on a.id=p.address_id join property_images i on p.id=i.property_id where p.is_rental=$1 ORDER BY p.price ASC;"
                     , [is_rental],
                 );
                 res.status(200).json({
@@ -48,7 +50,8 @@ export default async function rental(req, res) {
             //no rental and search
             else if (search) {
                 const {rows} = await client.query(
-                    "SELECT a.*,p.* from properties p join address a on p.address_id=a.id WHERE (a.city ILIKE $1 OR a.zip_code ILIKE $2 OR a.address_line_1 ILIKE $3 OR a.country ILIKE $4 OR a.state ILIKE $5) ORDER BY p.price ASC;"
+
+                    "SELECT DISTINCT a.*,p.*,i.* from address a JOIN properties p ON a.id=p.address_id JOIN property_images i ON p.id=i.property_id WHERE (a.city ILIKE $1 OR a.zip_code ILIKE $2 OR a.address_line_1 ILIKE $3 OR a.country ILIKE $4 OR a.state ILIKE $5) ORDER BY p.price ASC;"
                     , [`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`],
                 );
                 res.status(200).json({
