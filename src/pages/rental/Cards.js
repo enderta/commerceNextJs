@@ -37,7 +37,6 @@ export default function Cards(props) {
                                    Price: {property.price} USD
                                 </p>
 
-
                                 <Link href={`/rental/${property.property_id}`}>
                                     <button
                                         className={`btn ${

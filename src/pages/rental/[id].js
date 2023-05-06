@@ -42,6 +42,13 @@ useEffect(() => {
 
             <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen`}>
                 <div>
+
+                    <Button variant="outline" href="/rental/rentalhome">
+                        <FontAwesomeIcon icon="arrow-left" /> 🏠
+                    </Button>
+
+                </div>
+                <div>
                     <h1 className="text-center text-4xl font-bold">Property Details</h1>
                 </div>
                 <Container className="d-flex justify-content-center">
@@ -66,13 +73,7 @@ useEffect(() => {
                     )}
 
                 </Container>
-                <div>
 
-                    <Button variant="outline" href="/rental/rentalhome">
-                        <FontAwesomeIcon icon="arrow-left" /> 🏠
-                    </Button>
-
-                </div>
             </div>
 
 
