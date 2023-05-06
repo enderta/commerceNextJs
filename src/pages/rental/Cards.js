@@ -1,14 +1,15 @@
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import StarRating from "./RatingStars";
 
-export default function Cards(props){
-    const [dark,setDark]=useState(false);
+export default function Cards(props) {
+    const [dark, setDark] = useState(false);
 
-    useEffect(()=>{
-        if(props.dark){
+    useEffect(() => {
+        if (props.dark) {
             setDark(true);
         }
-    },[props.dark]);
+    }, [props.dark]);
 
     console.log(props);
 
@@ -24,11 +25,26 @@ export default function Cards(props){
                                 alt={property.address_line_1}
                             />
                             <div className="card-body">
-                                <h5 className={`card-title ${dark ? "text-white" : ""}`}>{property.address_line_1}</h5>
-                                <p className={`card-text ${dark ? "text-white" : ""}`}>{property.city}</p>
-                                <p className={`card-text ${dark ? "text-white" : ""}`}>{property.price}</p>
+                                <h5
+                                    className={`card-title ${dark ? "text-white" : ""}`}
+                                >
+                                    {property.address_line_1}
+                                </h5>
+                                <p className={`card-text ${dark ? "text-white" : ""}`}>
+                                    {property.city}
+                                </p>
+                                <p className={`card-text ${dark ? "text-white" : ""}`}>
+                                    {property.price}
+                                </p>
+
                                 <Link href={`/rental/${property.property_id}`}>
-                                    <button className={`btn ${dark ? "btn-light" : "btn-primary"}`}>View</button>
+                                    <button
+                                        className={`btn ${
+                                            dark ? "btn-light" : "btn-primary"
+                                        }`}
+                                    >
+                                        View
+                                    </button>
                                 </Link>
                             </div>
                         </div>

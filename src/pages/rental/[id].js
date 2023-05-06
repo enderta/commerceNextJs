@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {Container, Row, Col, Image} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import RatingStars from "@/pages/rental/RatingStars";
 
 
 export default function Home() {
@@ -48,6 +49,11 @@ useEffect(() => {
                                     Price: {property.price} {property.currency}
                                 </p>
                                 <p>{property.is_rental ? "For rent" : "For sale"}</p>
+                                <div>
+                                    <RatingStars rating={property.rating} />
+                                    <p> Review: {property.comment} </p>
+                                </div>
+
                             </Col>
                             <Col md={4}>
                                 <Image src={property.image_url} alt={property.title} thumbnail />
