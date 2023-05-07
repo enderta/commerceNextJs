@@ -1,11 +1,8 @@
-import React from "react";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import RatingStars from "@/pages/rental/RatingStars";
 import {Container, Row, Col, Image} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import RatingStars from "@/pages/rental/RatingStars";
-
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 
 export default function Home() {
     const router = useRouter();
@@ -13,70 +10,73 @@ export default function Home() {
     const [property, setProperty] = useState({});
     const [darkMode, setDarkMode] = useState(false);
     const [rating, setRating] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-    if (localStorage.getItem("dark") === "true") {
-        setDarkMode(true);
-    } else {
-        setDarkMode(false);
-    }
-}, [localStorage.getItem("dark")]);
-
-
+    useEffect(() => {
+        if (localStorage.getItem("dark") === "true") {
+            setDarkMode(true);
+        } else {
+            setDarkMode(false);
+        }
+    }, []);
 
     useEffect(() => {
         const getProperty = async () => {
-            const response = await fetch(`http://localhost:3000/api/single/${id}`);
-            const data = await response.json();
-            setProperty(data.data[0]);
-            const stars=(data.data.map((r) => r.rating));
-            const comments=(data.data.map((r) => r.comment));
-            setRating([{stars},{comments}]);
+            if (id) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/single/${id}`);
+                    const data = await response.json();
+                    console.log(data);
+                    setProperty(data.data[0]);
+                    const stars = data.data.map((r) => r.rating);
+                    const comments = data.data.map((r) => r.comment);
+                    setRating([{stars}, {comments}]);
+                    setLoading(false);
+                } catch (error) {
+                    console.error(error);
+                    setLoading(false);
+                }
+            }
         };
-        getProperty().then((r) => console.log(r));
+        getProperty().then(r => r);
     }, [id]);
-    console.log(property)
-    console.log(rating)
+
     return (
-
-
-            <div className={`${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} min-h-screen`}>
-                <div>
-
-                    <Button variant="outline" href="/rental/rentalhome">
-                        <FontAwesomeIcon icon="arrow-left" /> 🏠
-                    </Button>
-
+        <div>
+            {loading ? (
+                <h1>Loading...</h1>
+            ) : (
+                <div className={`${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"} min-h-screen`}>
+                    <div>
+                        <Button variant="outline" href="/rental/rentalhome">
+                            🏠
+                        </Button>
+                    </div>
+                    <div>
+                        <h1 className="text-center text-4xl font-bold">Property Details</h1>
+                    </div>
+                    <Container className="d-flex justify-content-center">
+                        {property.id && (
+                            <Row>
+                                <Col md={8}>
+                                    <h2>{property.title}</h2>
+                                    <p>{property.description}</p>
+                                    <p>
+                                        Price: {property.price} {property.currency}
+                                    </p>
+                                    <p>{property.is_rental ? "For rent" : "For sale"}</p>
+                                    <div>
+                                        <RatingStars rating={rating} />
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <Image src={property.image_url} alt={property.title} thumbnail />
+                                </Col>
+                            </Row>
+                        )}
+                    </Container>
                 </div>
-                <div>
-                    <h1 className="text-center text-4xl font-bold">Property Details</h1>
-                </div>
-                <Container className="d-flex justify-content-center">
-                    {property.id && (
-                        <Row>
-                            <Col md={8}>
-                                <h2>{property.title}</h2>
-                                <p>{property.description}</p>
-                                <p>
-                                    Price: {property.price} {property.currency}
-                                </p>
-                                <p>{property.is_rental ? "For rent" : "For sale"}</p>
-                                <div>
-                                    <RatingStars rating={rating} />
-                                </div>
-
-                            </Col>
-                            <Col md={4}>
-                                <Image src={property.image_url} alt={property.title} thumbnail />
-                            </Col>
-                        </Row>
-                    )}
-
-                </Container>
-
-            </div>
-
-
-
+            )}
+        </div>
     );
-}
+};
