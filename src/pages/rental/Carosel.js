@@ -31,6 +31,7 @@ export default function Carosel(props) {
                                         className="d-block w-100"
                                         src={image}
                                         alt={`Slide ${index}`}
+                                        style={{ height: "600px" }}
                                     />
                                     <Carousel.Caption>
                                     </Carousel.Caption>
