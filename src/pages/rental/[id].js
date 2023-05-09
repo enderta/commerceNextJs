@@ -33,7 +33,7 @@ export default function Home() {
                     const comments = data.data.map((r) => r.comment);
                     setRating([{stars}, {comments}]);
                     const imgs = data.data.map((r) => r.image_url);
-                    setImages(imgs);
+                    setImages([...new Set(imgs)]);
                     setLoading(false);
                 } catch (error) {
                     console.error(error);
@@ -83,6 +83,7 @@ export default function Home() {
                                                                 className="d-block w-100"
                                                                 src={image}
                                                                 alt={`Slide ${index}`}
+
                                                             />
                                                             <Carousel.Caption>
                                                             </Carousel.Caption>

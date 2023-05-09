@@ -21,8 +21,11 @@ const RatingStars = ({rating}) => {
     for (let i = 0; i < halfStars; i++) {
         stars.push(<FontAwesomeIcon  icon={faStarHalf} color="green"/>);
     }
-
+    console.log(rating[1].comments)
     //empty stars fa
+    const com=[...new Set(rating[1].comments)]
+    console.log(com)
+
 
 
     // Add the full stars
@@ -36,7 +39,7 @@ const RatingStars = ({rating}) => {
             <br/>
             <h6 style={{color:'goldenrod'}}>Comments</h6>
             {
-                rating[1].comments.map((comment, index) => {
+               com.map((comment, index) => {
                     return (
                         <div key={index}>
 

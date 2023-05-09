@@ -50,7 +50,6 @@ export default async function rental(req, res) {
             //no rental and search
             else if (search) {
                 const {rows} = await client.query(
-
                     "SELECT DISTINCT a.*,p.*,i.* from address a JOIN properties p ON a.id=p.address_id JOIN property_images i ON p.id=i.property_id WHERE (a.city ILIKE $1 OR a.zip_code ILIKE $2 OR a.address_line_1 ILIKE $3 OR a.country ILIKE $4 OR a.state ILIKE $5) ORDER BY p.price ASC;"
                     , [`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`],
                 );
@@ -86,5 +85,48 @@ export default async function rental(req, res) {
             client.release();
         }
     }
-    
+    else if (method==="POST"){
+/*
+* create table properties
+(
+    id          serial
+        primary key,
+    title       varchar(255)     not null,
+    description text             not null,
+    address_id  integer          not null
+        references address,
+    price       double precision not null,
+    currency    varchar(20)      not null,
+    is_rental   boolean          not null
+);
+
+* */
+        const {title, description, address_id, price, currency, is_rental} = req.body;
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: errors.array()});
+        }
+        try {
+            const {rows} = await client.query(
+                "INSERT INTO properties (title, description, address_id, price, currency, is_rental) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+                [title, description, address_id, price, currency, is_rental]
+            );
+            res.status(200).json({
+                    status: "success",
+                    message: `Property added`,
+                    data: {
+                        rows
+                    }
+                }
+            );
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send("Server error");
+        } finally {
+            client.release();
+        }
+    }
+    else {
+        res.status(500).send("Server error");
+    }
 }
