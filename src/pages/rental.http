@@ -15,10 +15,13 @@ GET http://localhost:3000/api/1
 
 
 ###
-PUT http://localhost:3000/api/porperty/2/images/10
+POST http://localhost:3000/api/rentalImages
 content-type: application/json
 
 {
-  "property_id": 2,
-  "image_url": "https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/advisor/wp-content/uploads/2021/08/download-11.jpg"
+  "property_id": 1,
+  "image_url": "https://images.pexels.com/photos/2109493/pexels-photo-2109493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }
+
+###
+GET http://localhost:3000/api/

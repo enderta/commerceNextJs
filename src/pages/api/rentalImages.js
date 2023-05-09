@@ -15,7 +15,7 @@ export default async function rentalImages(req, res) {
                     data: {
                         rows
                     },
-                image_url: rows.map((row) => row.image_url)
+                    image_url: rows.map((row) => row.image_url)
                 }
             );
         } catch (err) {
@@ -40,9 +40,9 @@ export default async function rentalImages(req, res) {
         catch (err) {
             console.error(err);
         }
-     finally {
-        client.release();
-    }
+        finally {
+            client.release();
+        }
     }
 
 }

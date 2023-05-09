@@ -86,4 +86,5 @@ export default async function rental(req, res) {
             client.release();
         }
     }
+    
 }

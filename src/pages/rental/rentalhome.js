@@ -27,7 +27,20 @@ export default function RentalHome(props) {
         const fetchData = async () => {
             const res = await fetch(`http://localhost:3000/api/rental?search=${search}&is_rental=${is_rental}`);
             const data = await res.json();
-            setProperties(data.data.rows);
+            const obj={}
+            //add all the same property_id to the same object
+            data.data.rows.forEach((property)=>{
+                if(!obj[property.property_id]){
+                    obj[property.property_id]=[]
+                }
+                obj[property.property_id].push(property)
+            })
+            console.log(obj)
+            //get the first property in the obj and assing to the properties
+            setProperties(Object.values(obj).map((property)=>{
+                return property[0]
+            }));
+
             setLoading(false);
             localStorage.setItem('dark', darkMode);
         };

@@ -1,5 +1,5 @@
 import RatingStars from "@/pages/rental/RatingStars";
-import {Container, Row, Col, Image} from "react-bootstrap";
+import {Container, Row, Col, Image, Carousel} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
@@ -11,10 +11,11 @@ export default function Home() {
     const [darkMode, setDarkMode] = useState(false);
     const [rating, setRating] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem("dark") === "true") {
-            setDarkMode(true);
+         setDarkMode(true)
         } else {
             setDarkMode(false);
         }
@@ -31,6 +32,8 @@ export default function Home() {
                     const stars = data.data.map((r) => r.rating);
                     const comments = data.data.map((r) => r.comment);
                     setRating([{stars}, {comments}]);
+                    const imgs = data.data.map((r) => r.image_url);
+                    setImages(imgs);
                     setLoading(false);
                 } catch (error) {
                     console.error(error);
@@ -70,7 +73,26 @@ export default function Home() {
                                     </div>
                                 </Col>
                                 <Col md={4}>
-                                    <Image src={property.image_url} alt={property.title} thumbnail />
+                                    <div className={"container"}>
+                                        <Carousel>
+                                            {
+                                                images.map((image, index) => {
+                                                    return (
+                                                        <Carousel.Item key={index}>
+                                                            <img
+                                                                className="d-block w-100"
+                                                                src={image}
+                                                                alt={`Slide ${index}`}
+                                                            />
+                                                            <Carousel.Caption>
+                                                            </Carousel.Caption>
+                                                        </Carousel.Item>
+                                                    );
+                                                })
+                                            }
+
+                                        </Carousel>
+                                    </div>
                                 </Col>
                             </Row>
                         )}
