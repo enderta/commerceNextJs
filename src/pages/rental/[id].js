@@ -22,11 +22,17 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
+        let isMounted = true;
         const getProperty = async () => {
-            if (id) {
+
+
                 try {
                     const response = await fetch(`http://localhost:3000/api/single/${id}`);
                     const data = await response.json();
+                    if (isMounted) {
+                        setProperty(data.property);
+                        setLoading(false);
+                    }
                     console.log(data);
                     setProperty(data.data[0]);
                     const stars = data.data.map((r) => r.rating);
@@ -36,12 +42,16 @@ export default function Home() {
                     setImages([...new Set(imgs)]);
                     setLoading(false);
                 } catch (error) {
-                    console.error(error);
+                    console.error(err);
+
                     setLoading(false);
                 }
             }
-        };
+
         getProperty().then(r => r);
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
     return (
