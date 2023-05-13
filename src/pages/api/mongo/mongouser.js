@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { check, validationResult } from 'express-validator';
-import connect from './monogo';
+import connect from './monogo.mjs';
 import bcrypt from "bcrypt";
 import autoIncrement from 'mongoose-auto-increment';
 

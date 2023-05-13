@@ -2,6 +2,7 @@ import {connectDb} from '../db';
 import jwt from 'jsonwebtoken';
 import {check, validationResult} from 'express-validator';
 
+
 const secret = 'your_secret_key_here';
 
 export default async function allPosts(req, res) {
