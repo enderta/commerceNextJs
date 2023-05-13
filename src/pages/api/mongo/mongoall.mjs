@@ -72,7 +72,7 @@ const updatePost = async (req, res) => {
                 content: updatedPost.content,
                 created_at: updatedPost.created_at,
                 updated_at: updatedPost.updated_at,
-    }
+            }
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
