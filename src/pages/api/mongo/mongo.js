@@ -1,19 +1,21 @@
+const conn = require('./monogo.js');
+const BlogPost = require('./scheme.js');
 
-import BlogPost from "./scheme.mjs";
-import connect from './monogo.mjs'
+module.exports = async function mongoApi(req, res){
+    await conn();
 
-export default async function mongoApi(req,res){
-    await connect();
     const method = req.method;
     if(method === 'POST') {
-        const { title, content, author } = req.body;
-        const newPost = new BlogPost({
-            title,
-            content,
-            author,
-        });
+       const {title,content,author} = req.body;
+
         try {
-            await newPost.save();
+           const newPost= new BlogPost(
+                {
+                     title: title,
+                     content: content,
+                    author: author}
+           );
+              await newPost.save();
             res.status(201).json({
                 message: "Post created successfully",
                 data: newPost,
@@ -21,6 +23,7 @@ export default async function mongoApi(req,res){
         } catch (error) {
             res.status(409).json({ message: error.message });
         }
+
     } else if(method === 'GET') {
         try {
             const posts = await BlogPost.find();
@@ -31,6 +34,7 @@ export default async function mongoApi(req,res){
         } catch (error) {
             res.status(404).json({ message: error.message });
         }
+
     }
    else {
         res.status(400).json({ message: "Only GET and POST requests allowed" });

@@ -1,4 +1,4 @@
-import connect from './mongo/monogo.mjs';
+import connect from './mongo/monogo.js';
 import User from "../models/user";
 connect();
 

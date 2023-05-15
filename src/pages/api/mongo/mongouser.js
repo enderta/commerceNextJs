@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { check, validationResult } from 'express-validator';
-import connect from './monogo.mjs';
+import connect from './monogo.js';
 import bcrypt from "bcrypt";
 import autoIncrement from 'mongoose-auto-increment';
 
@@ -9,7 +9,7 @@ const secret = 'your_secret_key_here';
 
 // Connect to the MongoDB instance
 
-autoIncrement.initialize(mongoose.connection);
+
 
 // Define a new schema for the User model
 const userSchema = new mongoose.Schema({

@@ -5,25 +5,18 @@ export default function Read(){
     const [search,setSearch]=useState('')
     const [darkMode,setDarkMode]=useState(false)
 
-    useEffect(( )=>{
-        fetch(`http://localhost:5000/posts`)
-        .then(res=>res.json())
-        .then(data=>()=>{
-            if(search===''){
-                setPosts(data.data)
-            }else{
-                //title,content,author
-                const filteredData=data.data.filter(post=>(
-                    post.title.toLowerCase().includes(search.toLowerCase())||
-                    post.content.toLowerCase().includes(search.toLowerCase())||
-                    post.author.toLowerCase().includes(search.toLowerCase())
-                ))
+    //async function
+    const get=async()=>{
+        const res= await fetch(`http://localhost:3000/api/mongo/mongo`)
+        const data=await res.json()
+        setPosts(data.data)
+    }
 
-                setPosts(filteredData)
-            }
-        })
-    },[search])
+    useEffect(()=>{
+        get().then(r => console.log(r))
+    },[])
 
+    console.log(posts)
     return(
         <div className={darkMode?'dark-mode':'light-mode'}>
             <nav>

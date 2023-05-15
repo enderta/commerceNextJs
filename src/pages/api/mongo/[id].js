@@ -1,9 +1,22 @@
-import BlogPost from "./scheme.mjs";
-import connect from './monogo.mjs'
+const BlogPost = require('./scheme.js');
+const connect = require('./monogo.js');
+const mongoose = require("mongoose");
 
+module.exports = async function  handler(req, res) {
+    const conn=async () => {
+        try {
+            await mongoose.connect('mongodb+srv://ender:ender@ender.9e2zipx.mongodb.net/ender?retryWrites=true&w=majority', {
+                //mongodb+srv://ender:ender@ender.9e2zipx.mongodb.net/?retryWrites=true&w=majority
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+            console.log('Successfully connected to MongoDB.');
+        } catch (err) {
+            console.error('Error connecting to MongoDB: ', err);
+        }
+    }
+    await conn();
 
-export default async function handler(req, res) {
-    await connect();
     const method = req.method;
     const {id}=req.query;
     if(method==="GET"){
@@ -16,6 +29,7 @@ export default async function handler(req, res) {
         } catch (error) {
             res.status(404).json({ message: error.message });
         }
+
     }
     else if(method==="PUT"){
         const {title, content, author}=req.body;
@@ -39,6 +53,7 @@ export default async function handler(req, res) {
         } catch (error) {
             res.status(404).json({message:error.message})
         }
+
     }
     else{
         res.status(400).json({message:"Invalid request"})
